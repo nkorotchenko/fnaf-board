@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.tcc": "cpp",
+        "*.tpp": "cpp",
+        "mstd_atomic": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "fstream": "cpp",
+        "future": "cpp",
+        "istream": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp"
+    }
+}
