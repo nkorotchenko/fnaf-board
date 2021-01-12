@@ -10,6 +10,7 @@ GameButton leftDoorButton(PB_12);
 
 SPI spi(PB_15, PB_14, PB_13);
 DigitalOut ledLatch(PB_1);
+DigitalOut soundLatch(PB_0);
 
 //Serial Debug(USBTX, USBRX);
 
@@ -25,6 +26,14 @@ int main()
   spi.write(0b11000010);
 
   ledLatch = 1;
+  spi.unlock();
+
+  spi.lock();
+  soundLatch = 0;
+
+  spi.write(0b00110001);
+
+  soundLatch = 1;
   spi.unlock();
 
   wait_ms(1000);
