@@ -5,3 +5,8 @@ Components
 * OLED Display 0.96' I2C IIC 128*64
 * DY-SV17F MP3 Player
 * 74HC595N
+
+
+## Current state
+
+![](demo.gif)
