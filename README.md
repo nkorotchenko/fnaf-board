@@ -1,4 +1,4 @@
-# Five Nights at Freddy's (FNAF) powered by STM32F103 Blue pill
+# Five Nights at Freddy's (FNAF) game board powered by STM32F103 Blue pill
 
 Components
 * STM32F103C8T6 ARM
