@@ -4,37 +4,13 @@
 GameEnergy::GameEnergy()
 {
     Energy = 100;
-    
-    IsDoorLeftClosed = false;
-    IsDoorRightClosed = false;
-}
-
-void GameEnergy::SetDoor(E_GameDoor door, bool closed)
-{
-    if (door == E_GameDoor::LEFT)
-    {
-        IsDoorLeftClosed = closed;
-    }
-    else if (door == E_GameDoor::RIGHT)
-    {
-        IsDoorRightClosed = closed;
-    }
+    Usage = 1;
 }
 
 void GameEnergy::Update(float elapsed)
 {
-    float multiplier = 0.05;
-
-    if (IsDoorLeftClosed)
-    {
-        multiplier += 0.1;
-    }
-
-    if (IsDoorRightClosed)
-    {
-        multiplier += 0.1;
-    }
-
+    float multiplier = 0.05 + (Usage * 0.1);
+    
     Energy -= multiplier * elapsed;
 
     if (Energy <= 0)
@@ -43,38 +19,27 @@ void GameEnergy::Update(float elapsed)
     }
 }
 
-bool GameEnergy::GetDoorClosed(E_GameDoor door)
+void GameEnergy::SetUsage(int usage)
 {
-    if (door == E_GameDoor::LEFT)
+    Usage = usage;
+
+    if (Usage > USAGE_MAX)
     {
-        return IsDoorLeftClosed;
-    }
-    else if (door == E_GameDoor::RIGHT)
-    {
-        return IsDoorRightClosed;
+        Usage = USAGE_MAX;
     }
 
-    return false;
+    if (Usage < USAGE_MIN)
+    {
+        Usage = USAGE_MIN;
+    }
 }
 
-int GameEnergy::GetUsage()
+void GameEnergy::AddUsage(int usage)
 {
-    int usage = 1;
-
-    if (IsDoorLeftClosed)
-    {
-        usage++;
-    }
-
-    if (IsDoorRightClosed)
-    {
-        usage++;
-    }
-
-    return usage;
+    SetUsage(Usage + usage);
 }
 
 int GameEnergy::GetMaxUsage()
 {
-    return 3;
+    return USAGE_MAX;
 }

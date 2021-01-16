@@ -41,8 +41,8 @@ void GameDisplay::DrawGamePage()
 
     GameEnergy *gameEnergy = gameState->GetEnergy();
 
-    DrawDoor(0, 15, gameEnergy->GetDoorClosed(E_GameDoor::LEFT));
-    DrawDoor(128 - 15, 15, gameEnergy->GetDoorClosed(E_GameDoor::RIGHT));
+    DrawDoor(0, 15, gameState->GetDoorClosed(E_GameDoor::LEFT));
+    DrawDoor(128 - 15, 15, gameState->GetDoorClosed(E_GameDoor::RIGHT));
 
     for (int usage = 0; usage < gameEnergy->GetMaxUsage(); usage++)
     {

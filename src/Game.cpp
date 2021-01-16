@@ -27,7 +27,6 @@ void Game::Display()
 
 void Game::ToggleButton(E_GameButton button)
 {
-    GameEnergy *gameEnergy = gameState->GetEnergy();
     E_GameState state = gameState->GetState();
 
     if (state == E_GameState::MAIN_MENU)
@@ -39,11 +38,11 @@ void Game::ToggleButton(E_GameButton button)
         switch (button)
         {
         case E_GameButton::LEFT_DOOR:
-            gameEnergy->SetDoor(E_GameDoor::LEFT, !gameEnergy->GetDoorClosed(E_GameDoor::LEFT));
+            gameState->SetDoor(E_GameDoor::LEFT, !gameState->GetDoorClosed(E_GameDoor::LEFT));
             break;
 
         case E_GameButton::RIGHT_DOOR:
-            gameEnergy->SetDoor(E_GameDoor::RIGHT, !gameEnergy->GetDoorClosed(E_GameDoor::RIGHT));
+            gameState->SetDoor(E_GameDoor::RIGHT, !gameState->GetDoorClosed(E_GameDoor::RIGHT));
             break;
 
         default:

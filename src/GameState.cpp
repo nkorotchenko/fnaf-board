@@ -15,11 +15,40 @@ void GameState::Update(float elapsed)
     gameEnergy->Update(elapsed);
 }
 
+void GameState::SetDoor(E_GameDoor door, bool closed)
+{
+    if (door == E_GameDoor::LEFT)
+    {
+        IsDoorLeftClosed = closed;
+    }
+    else if (door == E_GameDoor::RIGHT)
+    {
+        IsDoorRightClosed = closed;
+    }
+
+    gameEnergy->AddUsage(closed ? 1 : -1);
+}
+
+bool GameState::GetDoorClosed(E_GameDoor door)
+{
+    if (door == E_GameDoor::LEFT)
+    {
+        return IsDoorLeftClosed;
+    }
+    else if (door == E_GameDoor::RIGHT)
+    {
+        return IsDoorRightClosed;
+    }
+
+    return false;
+}
+
 void GameState::NewGame()
 {
     state = E_GameState::GAME;
     gameTime->Set(24, 0);
     gameEnergy->Set(100);
+    gameEnergy->SetUsage(0);
 }
 
 char *GameState::GetTimeString()
