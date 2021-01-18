@@ -6,7 +6,7 @@ GameState::GameState()
     gameTime = new GameTime(24, 0);
     gameEnergy = new GameEnergy();
     
-    state = E_GameState::MAIN_MENU;
+    displayState = E_DisplayState::MAIN_MENU;
 }
 
 void GameState::Update(float elapsed)
@@ -45,7 +45,7 @@ bool GameState::GetDoorClosed(E_GameDoor door)
 
 void GameState::NewGame()
 {
-    state = E_GameState::GAME;
+    displayState = E_DisplayState::GAME;
     gameTime->Set(24, 0);
     gameEnergy->Set(100);
     gameEnergy->SetUsage(0);

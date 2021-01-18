@@ -27,13 +27,13 @@ void Game::Display()
 
 void Game::ToggleButton(E_GameButton button)
 {
-    E_GameState state = gameState->GetState();
+    E_DisplayState displayState = gameState->GetDisplayState();
 
-    if (state == E_GameState::MAIN_MENU)
+    if (displayState == E_DisplayState::MAIN_MENU)
     {
         gameState->NewGame();
     }
-    else if (state == E_GameState::GAME)
+    else if (displayState == E_DisplayState::GAME)
     {
         switch (button)
         {

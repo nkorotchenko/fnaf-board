@@ -10,7 +10,7 @@ enum E_GameDoor
     RIGHT = 2,
 };
 
-enum E_GameState
+enum E_DisplayState
 {
     MAIN_MENU = 1,
     START_GAME = 2,
@@ -24,7 +24,7 @@ class GameState
     GameTime *gameTime;
     GameEnergy *gameEnergy;
 
-    E_GameState state;
+    E_DisplayState displayState;
 
     bool IsDoorLeftClosed;
     bool IsDoorRightClosed;
@@ -39,7 +39,7 @@ public:
 
     GameTime *GetTime() { return gameTime; }
     GameEnergy *GetEnergy() { return gameEnergy; }
-    E_GameState GetState() { return state; }
+    E_DisplayState GetDisplayState() { return displayState; }
 
     void SetDoor(E_GameDoor door, bool closed);
     bool GetDoorClosed(E_GameDoor door);

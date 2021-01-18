@@ -40,6 +40,7 @@ int main()
 
   Game game;
   game.Init();
+  game.Display();
 
   int ups = 0;
 
@@ -47,11 +48,6 @@ int main()
 
   while (1)
   {
-    if (ups == 0)
-    {
-      game.Display();
-    }
-
     UpdateInput(&game);
 
     wait_ms(15);
@@ -61,7 +57,9 @@ int main()
     {
       led = !led;
       ups = 0;
+
       game.Update();
+      game.Display();
     }
   }
 }

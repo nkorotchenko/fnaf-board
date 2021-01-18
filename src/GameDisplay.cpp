@@ -17,7 +17,7 @@ void GameDisplay::Init(GameState *state)
     display->clearDisplay();
     display->display();
 
-    prevState = gameState->GetState();
+    prevDisplayState = gameState->GetDisplayState();
 }
 
 void GameDisplay::DrawGamePage()
@@ -78,20 +78,20 @@ void GameDisplay::DrawMainMenu()
 
 void GameDisplay::Display()
 {
-    E_GameState state = gameState->GetState();
+    E_DisplayState displayState = gameState->GetDisplayState();
 
-    if (prevState != state)
+    if (prevDisplayState != displayState)
     {
         display->clearDisplay();
-        prevState = state;
+        prevDisplayState = displayState;
     }
 
-    switch (state)
+    switch (displayState)
     {
-    case E_GameState::MAIN_MENU:
+    case E_DisplayState::MAIN_MENU:
         DrawMainMenu();
         break;
-    case E_GameState::GAME:
+    case E_DisplayState::GAME:
         DrawGamePage();
         break;
 

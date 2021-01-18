@@ -11,7 +11,7 @@ class GameDisplay
     GameState *gameState;
     SSD1306 *display;
 
-    E_GameState prevState;
+    E_DisplayState prevDisplayState;
 
     void DrawDoor(int x, int y, bool closed);
     void DrawGamePage();
