@@ -5,6 +5,9 @@ GameState::GameState()
 {
     gameTime = new GameTime(24, 0);
     gameEnergy = new GameEnergy();
+
+    IsDoorLeftClosed = false;
+    IsDoorRightClosed = false;
     
     displayState = E_DisplayState::MAIN_MENU;
 }
@@ -26,7 +29,7 @@ void GameState::SetDoor(E_GameDoor door, bool closed)
         IsDoorRightClosed = closed;
     }
 
-    gameEnergy->AddUsage(closed ? 1 : -1);
+    gameEnergy->SetUsage(USAGE_MIN + IsDoorLeftClosed + IsDoorRightClosed);
 }
 
 bool GameState::GetDoorClosed(E_GameDoor door)
@@ -46,6 +49,10 @@ bool GameState::GetDoorClosed(E_GameDoor door)
 void GameState::NewGame()
 {
     displayState = E_DisplayState::GAME;
+
+    IsDoorLeftClosed = false;
+    IsDoorRightClosed = false;
+
     gameTime->Set(24, 0);
     gameEnergy->Set(100);
     gameEnergy->SetUsage(0);

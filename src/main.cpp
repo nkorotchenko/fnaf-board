@@ -50,7 +50,7 @@ int main()
   {
     UpdateInput(&game);
 
-    wait_ms(15);
+    wait_ms(10);
 
     ups++;
     if (ups == 60)
