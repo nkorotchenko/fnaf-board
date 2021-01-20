@@ -13,6 +13,9 @@ class GameDisplay
 
     E_DisplayState prevDisplayState;
 
+    GamePageState prevGamePageState;
+    unsigned long prevMainMenuCounter;
+
     void DrawDoor(int x, int y, bool closed);
     void DrawGamePage();
     void DrawMainMenu();

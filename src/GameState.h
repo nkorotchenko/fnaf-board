@@ -19,6 +19,26 @@ enum E_DisplayState
     GAME_OVER = 5
 };
 
+struct GamePageState
+{
+    bool IsDoorLeftClosed;
+    bool IsDoorRightClosed;
+    int Energy;
+    int Usage;
+    int Hour;
+    int Minute;
+
+    bool operator==(const GamePageState& value)
+    {
+        return IsDoorLeftClosed == value.IsDoorLeftClosed
+            && IsDoorRightClosed == value.IsDoorRightClosed
+            && Energy == value.Energy
+            && Usage == value.Usage
+            && Hour == value.Hour
+            && Minute == value.Minute;
+    }
+};
+
 class GameState
 {
     GameTime *gameTime;
@@ -32,6 +52,8 @@ class GameState
     char szTime[10];
     char szEnergy[24];
 
+    void UpdateEnergyUsing();
+
 public:
     GameState();
     
@@ -43,6 +65,8 @@ public:
 
     void SetDoor(E_GameDoor door, bool closed);
     bool GetDoorClosed(E_GameDoor door);
+
+    void GetGamePageState(GamePageState* state);
 
     void NewGame();
 

@@ -29,6 +29,11 @@ void GameState::SetDoor(E_GameDoor door, bool closed)
         IsDoorRightClosed = closed;
     }
 
+    UpdateEnergyUsing();
+}
+
+void GameState::UpdateEnergyUsing()
+{
     gameEnergy->SetUsage(USAGE_MIN + IsDoorLeftClosed + IsDoorRightClosed);
 }
 
@@ -56,6 +61,16 @@ void GameState::NewGame()
     gameTime->Set(24, 0);
     gameEnergy->Set(100);
     gameEnergy->SetUsage(0);
+}
+
+void GameState::GetGamePageState(GamePageState* state)
+{
+    state->IsDoorLeftClosed = IsDoorLeftClosed;
+    state->IsDoorRightClosed = IsDoorRightClosed;
+    state->Energy = (int)gameEnergy->GetEnergy();
+    state->Usage = gameEnergy->GetUsage();
+    state->Hour = gameTime->GetHour();
+    state->Minute = gameTime->GetMinutes();
 }
 
 char *GameState::GetTimeString()

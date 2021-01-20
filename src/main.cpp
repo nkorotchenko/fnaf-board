@@ -50,17 +50,18 @@ int main()
   {
     UpdateInput(&game);
 
-    wait_ms(10);
+    wait_ms(20);
 
     ups++;
-    if (ups == 60)
+    if (ups == 50)
     {
       led = !led;
       ups = 0;
 
       game.Update();
-      game.Display();
     }
+
+    game.Display();
   }
 }
 

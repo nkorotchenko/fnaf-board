@@ -23,6 +23,15 @@ void GameDisplay::Init(GameState *state)
 void GameDisplay::DrawGamePage()
 {
     char szText[32];
+    GamePageState state;
+
+    gameState->GetGamePageState(&state);
+    if (state == prevGamePageState)
+    {
+        return;
+    }
+
+    prevGamePageState = state;
 
     GameTime *gameTime = gameState->GetTime();
     sprintf(szText, "%.d", gameTime->GetTimestamp());
@@ -55,15 +64,24 @@ void GameDisplay::DrawGamePage()
 
 void GameDisplay::DrawMainMenu()
 {
+
+    unsigned long currentTimestamp = millis();
+    unsigned long currentCounter = (currentTimestamp / 1000) % 2;
+
+    if (prevMainMenuCounter == currentCounter)
+    {
+        return;
+    }
+
+    prevMainMenuCounter = currentCounter;
+
     display->setCursor(31, 7);
     display->println("Five Nights");
 
     display->setCursor(31, 20);
     display->println("at Freddy's");
 
-    unsigned long currentTimestamp = millis();
-
-    if ((currentTimestamp / 1000) % 2 == 0)
+    if (currentCounter == 0)
     {
         display->setCursor(16, 50);
         display->println("Press any key...");
